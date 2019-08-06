@@ -1,0 +1,39 @@
+# sudo docker build . -f Dockerfile -t localhost/hubot_app
+version: '2'
+services:
+  prod:
+    image: localhost/hubot_discord
+    env_from: .env
+    environment:
+      BIRTHDAY_CRON_STRING: 17 0 * * *
+      HUBOT_LOG_LEVEL: debug
+      HUBOT_NAME: Clark
+      HUBOT_DISCORD_STATUS_MSG: "on liveteam.org"
+      REDIS_URL: redis://redis:6379
+      CLARK_FOYER_ID: 434231628362153984
+    stdin_open: true
+    volumes:
+    - /srv/hubot-discord/scripts:/opt/hubot/scripts
+    - /srv/matterbridge/matterbridge.toml:/matterbridge.toml
+    tty: true
+    links:
+    - redis:redis
+#    secrets:
+#    - DISCORD_TOKEN
+#    - RANCHER_ACCESS_KEY
+#    - RANCHER_SECRET_KEY
+#    - SLACK_TOKEN
+  redis:
+    image: redis
+    volumes:
+    - /srv/hubot-discord/redis:/data
+#secrets:
+#  RANCHER_SECRET_KEY:
+#    external: 'true'
+#  SLACK_TOKEN:
+#    external: 'true'
+#  DISCORD_TOKEN:
+#    external: 'true'
+#  RANCHER_ACCESS_KEY:
+#    external: 'true'
+
