@@ -22,7 +22,7 @@
     "hubot-scripts": "^2.17.2",
     "hubot-shipit": "^0.2.1",
     "hubot-slack": "^4.4.0",
-    "moment": "^2.20.1",
+    "moment": "^2.29.4",
     "node-schedule": "^1.2.5",
     "bufferutil": "^3.0.3",
     "erlpack": "discordapp/erlpack",
